@@ -14,7 +14,9 @@ You can also create new datasets to conduct AD-based investigations of phylogeny
 
 ## Code
 
-Some libraries need to be installed for acoustic feature (AF) extraction, DTW calculation, and clustering:
+Some Python libraries need to be installed for acoustic feature (AF) extraction, DTW calculation, and clustering.
+
+<details><summary>View libraries</summary>
 
 - [spafe](https://pypi.org/project/spafe/)
 - [python_speech_features](https://pypi.org/project/python_speech_features/)
@@ -22,13 +24,15 @@ Some libraries need to be installed for acoustic feature (AF) extraction, DTW ca
 - [dtw-python](https://pypi.org/project/dtw-python/)
 - [biopython](https://pypi.org/project/biopython/)
 
+</details>
+
 ### Acoustic distance calculation
 
 Run [`acoustic_distance.py`](acoustic_distance.py) to extract AF and compute AD. AF, AF normalization method, DTW method, and AD normalization method can be selected via function parameters. Audio metadata is given in [`audio_metadata.py`](audio_metadata.py). Resulting distance matrices will be saved as `.csv` files in [`acoustic_distances`](acoustic_distances). When run for the first time, the archived audio dataset file `audios.joblib` mentioned above will be generated (if it does not exist) in order to speed up the calculation process.
 
 Since the calculation process is quite time-consuming, please comment out the parameters you do not want to extract in [`acoustic_distance.py`](acoustic_distance.py) (Lines 36–46) to save time. Besides, AD matrices under all parameter combinations are stored in this repository in [`acoustic_distances`](acoustic_distances), so you can quickly skip the AD calculation process and run the following process directly.
 
-<details><summary>Available AFs</summary>
+<details><summary>View available AFs</summary>
 
 - `BFCC`: Bark-frequency cepstral coefﬁcients
 - `CQCC`: Constant Q cepstral coefficients
@@ -46,7 +50,7 @@ Since the calculation process is quite time-consuming, please comment out the pa
 
 </details>
 
-<details><summary>Available AF normalization methods</summary>
+<details><summary>View available AF normalization methods</summary>
 
 - `CMVN`: Cepstral mean and variance normalization
 - `CMN`: Cepstral mean normalization
@@ -56,14 +60,14 @@ Since the calculation process is quite time-consuming, please comment out the pa
 
 </details>
 
-<details><summary>Available DTW methods</summary>
+<details><summary>View available DTW methods</summary>
 
 - `DTW-D`: [Dependent DTW](https://doi.org/10.1007/s10618-016-0455-0)
 - `DTW-OE`: [Open-end DTW](https://doi.org/10.1016/j.artmed.2008.11.007)
 
 </details>
 
-<details><summary>Available AD normalization methods</summary>
+<details><summary>View available AD normalization methods</summary>
 
 - `by-sum`: DTW distance divided by the sum of the lengths of two samples
 - `by-max`: DTW distance divided by the length of the longer sample
@@ -75,7 +79,7 @@ Since the calculation process is quite time-consuming, please comment out the pa
 
 Run [`clustering.py`](clustering.py) to generate AD-based evolutionary trees from AD matrices in [`acoustic_distances`](acoustic_distances). Clustering method can be selected via function parameters. Results in Newick format will be saved in [`trees/newicks.tsv`](trees/newicks.tsv).
 
-<details><summary>Available clustering methods</summary>
+<details><summary>View available clustering methods</summary>
 
 - `Complete`: Complete-linkage clustering
 - `UPGMA`: Unweighted pair group method with arithmetic mean
@@ -101,7 +105,7 @@ Run [`fitting.py`](fitting.py) to fit AD and date, and estimate chronology from 
 
 ## Data
 
-- [`acoustic_distances`](acoustic_distances): AD matrices under all parameter combinations
+- [`acoustic_distances/`](acoustic_distances): AD matrices under all parameter combinations
 - [`trees/newicks.tsv`](trees/newicks.tsv): Strings of all AD-based clustering trees in Newick format
 - [`trees/reference_tree.nwk`](trees/reference_tree.nwk): The reference tree in Newick format
 - [`trees/dissimilarity_metrics.csv`](trees/dissimilarity_metrics.csv): Dissimilarity metrics of all trees
