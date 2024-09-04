@@ -19,8 +19,7 @@ import spafe.features.pncc
 import spafe.features.psrcc
 import spafe.features.rplp
 import python_speech_features
-from dtaidistance import dtw_ndim
-from dtw import dtw
+from dtaidistance import dtw, dtw_ndim
 
 feature_funcs = {
     'BFCC': spafe.features.bfcc.bfcc,
@@ -49,10 +48,9 @@ hamming_window = spafe.utils.preprocessing.SlidingWindow(
     0.015, 0.005, 'hamming')
 
 dtw_funcs = {
-    # Dependent DTW. https://doi.org/10.1007/s10618-016-0455-0
-    'DTW-D': lambda x, y: dtw_ndim.distance_fast(x, y, use_pruning=False),
-    # Open-end DTW. https://doi.org/10.1016/j.artmed.2008.11.007
-    'DTW-OE': lambda x, y: dtw(x, y, distance_only=True).distance,
+    # Dependent DTW and independent DTW. See https://doi.org/10.1007/s10618-016-0455-0
+    'DTW-D': lambda x, y: dtw_ndim.distance_fast(x, y),
+    'DTW-I': lambda x, y: sum([dtw.distance_fast(x_i, y_i) for x_i, y_i in zip(x.T, y.T)]),
 }
 distance_normalization_funcs = {
     'by-sum': lambda x, len_1, len_2: x / (len_1 + len_2),

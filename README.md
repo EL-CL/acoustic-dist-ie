@@ -21,7 +21,6 @@ Some Python libraries need to be installed for acoustic feature (AF) extraction,
 - [spafe](https://pypi.org/project/spafe/)
 - [python_speech_features](https://pypi.org/project/python_speech_features/)
 - [dtaidistance](https://pypi.org/project/dtaidistance/)
-- [dtw-python](https://pypi.org/project/dtw-python/)
 - [biopython](https://pypi.org/project/biopython/)
 
 </details>
@@ -62,8 +61,8 @@ Since the calculation process is quite time-consuming, please comment out the pa
 
 <details><summary>View available DTW methods</summary>
 
-- `DTW-D`: [Dependent DTW](https://doi.org/10.1007/s10618-016-0455-0)
-- `DTW-OE`: [Open-end DTW](https://doi.org/10.1016/j.artmed.2008.11.007)
+- `DTW-D`: Dependent multi-dimensional DTW
+- `DTW-I`: Independent multi-dimensional DTW
 
 </details>
 
